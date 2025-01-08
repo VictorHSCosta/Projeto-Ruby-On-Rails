@@ -9,7 +9,7 @@
       <p>Bem-vindo, <%= current_user.email %>!</p>
       <%= form_with(url: destroy_user_session_path, method: :delete, class: "logout-form") do %>
       <button type="submit">Sair</button>
-<% end %>
+    <% end %>
 
     <% else %>
       <%= link_to 'Entrar', new_user_session_path %> ou
