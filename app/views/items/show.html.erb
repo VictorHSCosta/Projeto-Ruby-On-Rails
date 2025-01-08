@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @item.name %>
+</p>
+
+
+<div>
+  <%= link_to "Edit this item", edit_list_item_path(@list, @item) %> |
+  <%= link_to "Back to items", list_path(@list) %>
+
+  <%= button_to "Destroy this item", list_item_path(@list, @item), method: :delete, data: { confirm: "Tem certeza?" } %>
+
+
+</div>

@@ -1,0 +1,38 @@
+<h1>Edit Item</h1>
+
+<%= form_with(model: [@list, @item]) do |form| %>
+  <% if @item.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+      <ul>
+        <% @item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :due_date %>
+    <%= form.date_select :due_date %>
+  </div>
+
+  <div>
+    <%= form.label :completed %>
+    <%= form.check_box :completed %>
+  </div>
+
+  <div>
+    <%= form.submit "Update Item" %>
+  </div>
+<% end %>
+
+<div>
+  <%= link_to "Show this item", list_item_path(@list, @item) %> |
+  <%= link_to "Back to items", list_path(@list) %>
+</div>

@@ -1,0 +1,65 @@
+<h1><%= @list.name %></h1>
+
+<!-- Botão para abrir o modal -->
+<button id="open-modal-btn" style="margin-bottom: 10px; padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 5px;">
+  Adicionar Novo Item
+</button>
+
+<!-- Modal -->
+<div id="item-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000;">
+  <div style="background: white; margin: 10% auto; padding: 20px; width: 50%; border-radius: 5px; position: relative;">
+    <h2>Adicionar Novo Item</h2>
+    <!-- Botão para fechar o modal -->
+    <button id="close-modal-btn" style="position: absolute; top: 10px; right: 10px; background: red; color: white; border: none; padding: 5px; border-radius: 50%; cursor: pointer;">
+      X
+    </button>
+
+    <!-- Formulário para adicionar um novo item -->
+    <%= form_with(model: [@list, @list.items.new], local: true) do |form| %>
+      <div>
+        <%= form.label :name, "Nome da Tarefa" %>
+        <%= form.text_field :name, required: true %>
+      </div>
+      <div>
+        <%= form.label :due_date, "Data de Entrega" %>
+        <%= form.date_field :due_date %>
+      </div>
+      <div>
+        <%= form.label :completed, "Já foi feito?" %>
+        <%= form.check_box :completed %>
+      </div>
+      <div style="margin-top: 10px;">
+        <%= form.submit "Adicionar Item", style: "background-color: #4CAF50; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 5px;" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- Exibir os itens -->
+<h2>Itens da Lista</h2>
+<% if @list.items.any? %>
+  <ul>
+    <% @list.items.each do |item| %>
+      <% next if item.id.nil? %> <!-- Ignora itens inválidos -->
+      <li>
+        <strong><%= item.name %></strong>
+        <% if item.due_date %>
+          - Entregar até: <%= item.due_date.strftime('%d/%m/%Y') %>
+        <% end %>
+        <% if item.completed %>
+          <span style="color: green;">✔ Feito</span>
+        <% else %>
+          <span style="color: red;">❌ Não Feito</span>
+        <% end %>
+        <%= link_to "Excluir", list_item_path(@list, item), method: :delete, data: { confirm: "Tem certeza?" }, style: "color: red;" if item.id.present? %> |
+        <%= link_to "Mover para Cima", move_up_list_item_path(@list, item), method: :patch, style: "color: green;" if item.id.present? %> |
+        <%= link_to "Mover para Baixo", move_down_list_item_path(@list, item), method: :patch, style: "color: green;" if item.id.present? %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Sem itens na lista. Adicione o primeiro item usando o botão acima!</p>
+<% end %>
+
+<!-- Link para voltar -->
+<%= link_to "Voltar para as Listas", lists_path, style: "margin-top: 20px; display: inline-block;" %>
