@@ -1,11 +1,14 @@
-<% content_for :title, "New item" %>
 
-<h1>New item</h1>
+<section id="main">
+  <% content_for :title, "New item" %>
 
-<%= render "form", item: @item %>
+  <h1>New item</h1>
 
-<br>
+  <%= render "form", item: @item %>
 
-<div>
-  <%= link_to "Back to items", items_path %>
-</div>
+  <br>
+
+  <div>
+    <%= link_to "Voltar para itens", items_path %>
+  </div>
+</section>

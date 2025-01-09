@@ -1,38 +1,103 @@
-<h1>Edit Item</h1>
+<style>
+  #main {
+    color: var(--text-color);
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--card-background);
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  label {
+    margin: 10px;
+  }
 
-<%= form_with(model: [@list, @item]) do |form| %>
-  <% if @item.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
-      <ul>
-        <% @item.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  input[type="text"],
+  input[type="date"] {
+    width: 95%;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+
+  input[type="checkbox"] {
+    margin: 10px;
+  }
+
+  input[type="submit"] {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #4a7d6f;
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: #4a7d6f;
+    margin-bottom: 1.5rem;
+  }
+
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  div {
+    margin: 10px;
+  }
+}
+</style>
+
+<div id="main">
+  <h1>Editar Item da lista </h1>
+
+  <%= form_with(model: [@list, @item]) do |form| %>
+    <% if @item.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+        <ul>
+          <% @item.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div>
+      <%= form.label :due_date %>
+      <%= form.date_select :due_date %>
+    </div>
+
+    <div>
+      <%= form.label :completed %>
+      <%= form.check_box :completed %>
+    </div>
+
+    <div>
+      <%= form.submit "Update Item" %>
     </div>
   <% end %>
 
   <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= link_to "Deletar Item", list_item_path(@list, @item) %> |
+    <%= link_to "Voltar para itens da lista", list_path(@list) %>
   </div>
-
-  <div>
-    <%= form.label :due_date %>
-    <%= form.date_select :due_date %>
-  </div>
-
-  <div>
-    <%= form.label :completed %>
-    <%= form.check_box :completed %>
-  </div>
-
-  <div>
-    <%= form.submit "Update Item" %>
-  </div>
-<% end %>
-
-<div>
-  <%= link_to "Show this item", list_item_path(@list, @item) %> |
-  <%= link_to "Back to items", list_path(@list) %>
 </div>

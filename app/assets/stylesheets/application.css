@@ -9,6 +9,22 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
+.notice {
+  display: none;
+}
+
+.alert-notice {
+  display: none;
+}
+
+:root {
+  --primary-color: #5a8f7b;
+  --secondary-color: #f2b880;
+  --background-color: #faf3dd;
+  --text-color: #2a363b;
+  --card-background: #ffffff;
+}
+
 #item-modal {
   display: none;
   position: fixed;
