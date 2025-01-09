@@ -4,18 +4,48 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
     <%= csrf_meta_tags %>
 
+    <style>
+      :root {
+        --primary-color: #5A8F7B; 
+        --secondary-color: #F2B880; 
+        --background-color: #FAF3DD;
+        --text-color: #2A363B; 
+        --card-background: #FFFFFF; 
+      }
 
-    <% if user_signed_in? %>
-      <p>Bem-vindo, <%= current_user.email %>!</p>
-      <%= form_with(url: destroy_user_session_path, method: :delete, class: "logout-form") do %>
-      <button type="submit">Sair</button>
-    <% end %>
+      body {
+        background-color: var(--background-color); 
+        margin: 0;
+        padding: 0; 
+      }
 
-    <% else %>
-      <%= link_to 'Entrar', new_user_session_path %> ou
-      <%= link_to 'Registrar-se', new_user_registration_path %>
-    <% end %>
+      #form-actions > *{
+        background-color: var(--secondary-color);
+        color: white;
+        border: none;
+        border-radius: 2rem;
+        padding: 0.5rem 1.5rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        font-size: 1rem;
+        text-decoration: none;
+      }
 
+      #form-actions > div > *{
+        background-color: var(--secondary-color);
+        color: white;
+        border: none;
+        border-radius: 2rem;
+        padding: 0.5rem 1.5rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        font-size: 1rem;
+        text-decoration: none;
+      }
+
+    </style>
+
+    
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
@@ -41,6 +71,40 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
+      <header class="header" style="display: flex; flex-direction: column;   padding: 1rem 2rem; border-radius: 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; background-color: var(--primary-color); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border-radius:1rem; margin: 0 2rem 2rem; padding: 0 2rem; hover: background-color:rgb(231, 99, 22);">
+          <p style="color:#FFF"><strong>Bem-vindo :</strong> <%= current_user.email %>!</p>
+          <%= form_with(url: destroy_user_session_path, method: :delete, class: "logout-form") do %>
+          <button type="submit" style="background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 2rem;
+            padding: 0.5rem 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+          font-size: 1rem;">Sair</button>
+        </div>
+      <header>
+    <% end %>
+
+    <% else %>
+      <header class="header" style="display: flex; flex-direction: column;   padding: 1rem 2rem; border-radius: 1rem;">
+        <div style="display: flex; justify-content:space-between; align-items: center; background-color: var(--primary-color); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border-radius:1rem; margin: 0 2rem 2rem; padding: 0 2rem; hover: background-color:rgb(231, 99, 22); padding: 1rem" >
+          <p style="color:#FFF"><strong>Bem-vindo ao To Do List!</strong></p>
+          <article style="display: flex; justify-content: space-between; align-items: center; padding: 1rem">
+            <div style="margin-right: 1rem" id="form-actions">
+              <%= link_to 'Entrar', new_user_session_path  %> 
+            </div>
+            <div id="form-actions">
+              <%= link_to 'Registrar-se', new_user_registration_path %>
+            </div>
+          <article>
+        </div>
+      </header>
+    <% end %>
+      
+
     <%= yield %>
   </body>
 </html>

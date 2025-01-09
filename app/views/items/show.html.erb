@@ -1,16 +1,95 @@
-<p style="color: green"><%= notice %></p>
+<style>
+  #main {
+    color: var(--text-color);
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--card-background);
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
 
-<p>
-  <strong>Name:</strong>
-  <%= @item.name %>
-</p>
+  h1 {
+    font-size: 2rem;
+    color: #4a7d6f;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+  }
 
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
 
-<div>
-  <%= link_to "Edit this item", edit_list_item_path(@list, @item) %> |
-  <%= link_to "Back to items", list_path(@list) %>
+  a:hover {
+    text-decoration: underline;
+  }
 
-  <%= button_to "Destroy this item", list_item_path(@list, @item), method: :delete, data: { confirm: "Tem certeza?" } %>
+  .button_to input[type="submit"] {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
 
+  .button_to input[type="submit"]:hover {
+    background-color: #4a7d6f;
+  }
 
+  div {
+    margin: 10px;
+  }
+
+  p{
+    margin: 1rem;
+    font-size: 1.5rem;
+  }
+
+  #deletBotao > * > * ,
+  #backBotao > * {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: 1rem;
+    text-decoration: none;
+  }
+
+  #botoes{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  span{
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+  }
+
+</style>
+
+<div id="main">
+  <h1>Deletar Item</h1>
+  
+  <p style="color: green"><%= notice %></p>
+
+  <p>
+    <strong>Voce tem certeza que vai <span>deletar</span> o item:</strong>
+    <%= @item.name %>
+    <strong> ?</strong>
+  </p>
+
+  <div id="botoes">
+    <div id="deletBotao">
+      <%= button_to "Deletar item", list_item_path(@list, @item), method: :delete, data: { confirm: "Tem certeza?" } %>
+    </div>
+    <div id="backBotao" style="margin-top: 1rem">    
+      <%= link_to "Voltar para items", list_path(@list) %>
+    </div>
+  </div>
 </div>

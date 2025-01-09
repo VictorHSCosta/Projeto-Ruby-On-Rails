@@ -8,5 +8,10 @@
 
 <div>
   <%= link_to "Show this list", @list %> |
-  <%= link_to "Back to lists", lists_path %>
+  <button>
+    <%= link_to "Voltar", lists_path %>
+  </button>
+  <button>
+    <%= link_to "Delete", @list, method: :delete, data: { confirm: "Are you sure?" } %>
+  </button>
 </div>
