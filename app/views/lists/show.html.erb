@@ -41,7 +41,7 @@
     background-color: rgb(240, 176, 116);
   }
 
-  /* Modal styles */
+  /* Modal*/
   #item-modal {
     display: none;
     position: fixed;
@@ -55,7 +55,7 @@
 
   #item-modal div {
     background: var(--card-background);
-    margin: 10% auto;
+    margin: 5% auto;
     padding: 20px;
     width: 90%;
     max-width: 500px;
@@ -253,6 +253,10 @@
           <%= form.label :name, "Nome da Tarefa" %>
           <%= form.text_field :name, required: true %>
         </div>
+        <div style="display: flex; flex-direction: column;">
+          <%= form.label :description, "Descrição" %>
+          <%= form.text_area :description %>
+        </div>
         <div>
           <%= form.label :due_date, "Data de Entrega" %>
           <%= form.date_field :due_date %>
@@ -263,6 +267,7 @@
         </div>
         <div style="margin-top: 10px;">
           <%= form.submit "Adicionar Item", style: "background-color: #4CAF50; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 5px;" %>
+          <p style="color:red; font-size:12px;">* Todos os campos são obrigatórios</p>
         </div>
       <% end %>
     </div>

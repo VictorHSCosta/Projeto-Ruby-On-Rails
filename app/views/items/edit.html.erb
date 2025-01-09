@@ -13,7 +13,8 @@
   }
 
   input[type="text"],
-  input[type="date"] {
+  input[type="date"] ,
+  textarea {
     width: 95%;
     padding: 1rem;
     margin: 0.5rem 0;
@@ -77,17 +78,22 @@
     <% end %>
 
     <div>
-      <%= form.label :name %>
+      <%= form.label :nome %>
       <%= form.text_field :name %>
     </div>
 
     <div>
-      <%= form.label :due_date %>
+      <%= form.label :Descrição %>
+      <%= form.text_area :description %>
+    </div>
+
+    <div>
+      <%= form.label :Data %>
       <%= form.date_select :due_date %>
     </div>
 
     <div>
-      <%= form.label :completed %>
+      <%= form.label :completa %>
       <%= form.check_box :completed %>
     </div>
 
@@ -96,8 +102,7 @@
     </div>
   <% end %>
 
-  <div>
-    <%= link_to "Deletar Item", list_item_path(@list, @item) %> |
+  <div style="margin-top: 2rem; ">
     <%= link_to "Voltar para itens da lista", list_path(@list) %>
   </div>
 </div>

@@ -1,17 +1,52 @@
+<style>
+  #main {
+    margin: 0 2rem;
+    padding: 2rem;
+    background-color: var(--card-background);
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: #4a7d6f;
+    margin-bottom: 1.5rem;
+  }
+
+  label {
+    padding: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  input[type="text"]{
+    width: 95%;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  a {
+    margin-top: 1rem;
+    display: flex;
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+
+  
+</style>
+
 <% content_for :title, "Editing list" %>
 
-<h1>Editing list</h1>
+<div id="main">
+  <h1 >Editar Lista</h1>
 
-<%= render "form", list: @list %>
+  <%= render "form", list: @list %>
 
-<br>
-
-<div>
-  <%= link_to "Show this list", @list %> |
-  <button>
-    <%= link_to "Voltar", lists_path %>
-  </button>
-  <button>
-    <%= link_to "Delete", @list, method: :delete, data: { confirm: "Are you sure?" } %>
-  </button>
+  <div style="margin-top: 4rem">
+    <%= link_to "Voltar para itens da lista", @list, class: "btn btn-primary" %>
+    <%= link_to "Voltar para menu de listas", lists_path, class: "btn btn-secondary" %>
+  </div>
 </div>

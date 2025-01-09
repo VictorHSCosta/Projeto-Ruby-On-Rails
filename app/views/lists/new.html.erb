@@ -1,11 +1,61 @@
-<% content_for :title, "New list" %>
+<style>
 
-<h1>New list</h1>
 
-<%= render "form", list: @list %>
+  #new-list {
+    margin: 0 2rem;
+    padding: 2rem;
+    background-color: var(--card-background);
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
 
-<br>
+  #new-list h1 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
 
-<div>
-  <%= link_to "Back to lists", lists_path %>
+  #new-list div {
+    margin-top: 20px;
+  }
+
+  label {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  input[type="text"]{
+    width: 95%;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  #new-list a {
+    margin: 2rem 0.5;
+    display: flex;
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+
+  #new-list a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+
+<div id="new-list">
+  <% content_for :title, "New list" %>
+
+  <h1>Nova Lista</h1>
+
+  <%= render "form", list: @list %>
+
+  <div>
+    <%= link_to "Voltar para as listas", lists_path %>
+  </div>
 </div>
