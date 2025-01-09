@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
-    <%= csrf_meta_tags %>
+    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+
 
     <style>
       :root {
@@ -43,6 +45,54 @@
         text-decoration: none;
       }
 
+      .header{
+        "display: flex; 
+        flex-direction: column;  
+        padding: 1rem 2rem; 
+        border-radius: 1rem;"
+      }
+
+      .sub-header{
+        display: flex; 
+        justify-content:space-between; 
+        align-items: center; 
+        background-color: var(--primary-color); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border-radius:1rem; 
+        margin: 0 2rem 2rem; 
+        padding: 0 2rem; 
+      }
+
+      .bem-vindo{
+        color: white;  
+        margin: 0; 
+        padding: 1rem;
+      }
+
+      .bnt-login{
+        margin: 0 0.5rem;
+        background-color: var(--secondary-color);
+        color: white;
+        border: none;
+        border-radius: 2rem;
+        padding: 0.5rem 1.5rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        font-size: 1rem;
+      }
+
+      .bnt-login:hover{ 
+        background-color:rgb(230, 136, 81); 
+      }
+
+      @media (max-width: 600px) {
+        .header{
+          padding: 1rem 1rem; 
+        }
+        .sub-header{
+          margin: 0 1rem 1rem; 
+          padding: 0 1rem; 
+        }
+      }
+
     </style>
 
     
@@ -72,31 +122,24 @@
 
   <body>
     <% if user_signed_in? %>
-      <header class="header" style="display: flex; flex-direction: column;   padding: 1rem 2rem; border-radius: 1rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; background-color: var(--primary-color); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border-radius:1rem; margin: 0 2rem 2rem; padding: 0 2rem; hover: background-color:rgb(231, 99, 22);">
-          <p style="color:#FFF"><strong>Bem-vindo :</strong> <%= current_user.email %>!</p>
+      <header class="header">
+        <div class="sub-header">
+          <p class="bem-vindo"><strong>Bem-vindo :</strong> <%= current_user.email %>!</p>
           <%= form_with(url: destroy_user_session_path, method: :delete, class: "logout-form") do %>
-          <button type="submit" style="background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            border-radius: 2rem;
-            padding: 0.5rem 1.5rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-          font-size: 1rem;">Sair</button>
+          <button type="submit" class="bnt-login" >Sair</button>
         </div>
       <header>
     <% end %>
 
     <% else %>
-      <header class="header" style="display: flex; flex-direction: column;   padding: 1rem 2rem; border-radius: 1rem;">
-        <div style="display: flex; justify-content:space-between; align-items: center; background-color: var(--primary-color); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border-radius:1rem; margin: 0 2rem 2rem; padding: 0 2rem; hover: background-color:rgb(231, 99, 22); padding: 1rem" >
+      <header class="header">
+        <div class="sub-header" >
           <p style="color:#FFF"><strong>Bem-vindo ao To Do List!</strong></p>
           <article style="display: flex; justify-content: space-between; align-items: center; padding: 1rem">
-            <div style="margin-right: 1rem" id="form-actions">
+            <div class="bnt-login">
               <%= link_to 'Entrar', new_user_session_path  %> 
             </div>
-            <div id="form-actions">
+            <div class="bnt-login">
               <%= link_to 'Registrar-se', new_user_registration_path %>
             </div>
           <article>
