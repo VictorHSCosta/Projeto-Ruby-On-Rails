@@ -67,3 +67,5 @@ gem "devise"
 
 
 gem "acts_as_list", "~> 1.2"
+
+gem "tailwindcss-rails", "~> 3.2"

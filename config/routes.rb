@@ -4,8 +4,7 @@ Rails.application.routes.draw do
   resources :lists do
     resources :items do
       member do
-        patch :move_up
-        patch :move_down
+        get :search
       end
     end
   end

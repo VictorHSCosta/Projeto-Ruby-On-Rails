@@ -1,18 +1,4 @@
 <style>
-  #main {
-    margin: 0 2rem;
-    padding: 2rem;
-    background-color: var(--card-background);
-    border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-
-  h1 {
-    font-size: 2rem;
-    color: #4a7d6f;
-    margin-bottom: 1.5rem;
-  }
-
   label {
     padding: 0.5rem;
     font-size: 1.1rem;
@@ -28,25 +14,40 @@
     margin-bottom: 2rem;
   }
 
-  a {
-    margin-top: 1rem;
-    display: flex;
-    color: var(--primary-color);
-    text-decoration: none;
+  #form-actions  {
+    background-color: #4a7d6f;
+    font-size: 1rem;
+    color: white;
+    border: none;
+    border-radius: 100rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: fit-content;
   }
 
-  
+  @media (max-width: 768px) {
+    #form-actions {
+      text-align: center;
+      font-size: 0.8rem;
+    }
+  }
+
 </style>
 
-<% content_for :title, "Editing list" %>
+<div id="main" class="mx-8 p-8 bg-[--card-background] rounded-xl shadow-md mt-20 md:mt-40 mb-10">
+  <h1 class="text-2xl text-[#4a7d6f] mb-6">Editar Lista</h1>
 
-<div id="main">
-  <h1 >Editar Lista</h1>
+  <div id="form">
+    <%= render "form", list: @list%>
+  </div>
 
-  <%= render "form", list: @list %>
-
-  <div style="margin-top: 4rem">
-    <%= link_to "Voltar para itens da lista", @list, class: "btn btn-primary" %>
-    <%= link_to "Voltar para menu de listas", lists_path, class: "btn btn-secondary" %>
+  <div class="mt-16">
+    <%= link_to lists_path, class: "inline-block  text-primary rounded hover:bg-gray-500 ml-4" do %>
+      <div class="flex items-center">
+        <%= image_tag "back.png", alt: "Voltar", class: "w-5 h-auto" %>Voltar
+      </div>
+    <% end %>
   </div>
 </div>
+
