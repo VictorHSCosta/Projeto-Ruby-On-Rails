@@ -2,52 +2,68 @@
   <h1 class="text-2xl text-[--primary-color] mb-4 font-bold text-center"><%= @list.name %></h1>
   
 
-  <!-- Modal -->
-  <div id="item-modal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50">
-    <div class="bg-[--card-background] mx-auto mt-20 p-6 max-w-lg rounded-lg shadow-lg relative">
-      <h2 class="text-xl text-white bg-[--primary-color] rounded-lg px-4 py-2 mb-4">Adicionar Novo Item</h2>
-      <!-- Botão para fechar o modal -->
-      <button id="close-modal-btn" class="absolute top-4 right-4 bg-[--secondary-color] text-white rounded-full p-2 cursor-pointer">X</button>
+  <div id="item-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 overflow-y-auto h-full w-full z-50">
+    <div class="relative top-20 mx-auto p-5 border w-full max-w-md sm:max-w-lg md:max-w-xl shadow-lg rounded-md bg-white">
+      <div class="mt-3 text-center">
+        <h2 class="text-xl font-bold text-primary mb-4">Adicionar Novo Item</h2>
+        <button id="close-modal-btn" class="absolute top-0 right-0 mt-4 mr-4 text-gray-600 hover:text-gray-900">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
 
-      <!-- Formulário para adicionar um novo item -->
-      <%= form_with(model: [@list, @list.items.new], local: true, class: "space-y-4") do |form| %>
-        <div>
-          <%= form.label :name, "Nome da Tarefa", class: "block text-base font-medium mb-1" %>
-          <%= form.text_field :name, required: true, class: "w-full p-3 border border-gray-300 rounded-lg" %>
-        </div>
-        <div>
-          <%= form.label :description, "Descrição", class: "block text-base font-medium mb-1" %>
-          <%= form.text_area :description, class: "w-full p-3 border border-gray-300 rounded-lg" %>
-        </div>
-        <div>
-          <%= form.label :due_date, "Data de Entrega", class: "block text-base font-medium mb-1" %>
-          <%= form.date_field :due_date, class: "w-full p-3 border border-gray-300 rounded-lg" %>
-        </div>
-        <div>
-          <%= form.label :completed, "Já foi feito?", class: "block text-base font-medium mb-1" %>
-          <%= form.check_box :completed, class: "rounded" %>
-        </div>
-        <div>
-          <%= form.submit "Adicionar Item", class: "bg-green-500 text-white rounded-lg px-4 py-2 cursor-pointer hover:bg-green-600" %>
-          <p class="text-red-500 text-sm">* Todos os campos são obrigatórios</p>
-        </div>
-      <% end %>
+        <%= form_with(model: [@list, @list.items.new], local: true, class: "mt-2") do |form| %>
+          <div class="mb-4">
+            <%= form.label :name, "Nome da Tarefa", class: "block text-sm font-medium text-gray-700 mb-1" %>
+            <%= form.text_field :name, required: true, class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" %>
+          </div>
+          <div class="mb-4">
+            <%= form.label :description, "Descrição", class: "block text-sm font-medium text-gray-700 mb-1" %>
+            <%= form.text_area :description, class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" %>
+          </div>
+          <div class="mb-4">
+            <%= form.label :due_date, "Data de Entrega", class: "block text-sm font-medium text-gray-700 mb-1" %>
+            <%= form.date_field :due_date, class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" %>
+          </div>
+          <div class="mb-4 flex items-center">
+            <%= form.check_box :completed, class: "h-4 w-4 text-blue-600 focus:ring-primary border-gray-300 rounded" %>
+            <%= form.label :completed, "Já foi feito?", class: "ml-2 block text-sm text-gray-900" %>
+          </div>
+          <div class="mt-5 sm:mt-6">
+            <%= form.submit "Adicionar Item", class: "w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary sm:text-sm" %>
+          </div>
+        <% end %>
+        <p class="mt-2 text-sm text-red-600">* Todos os campos são obrigatórios</p>
+      </div>
     </div>
   </div>
 
-  <!-- Exibir os itens -->
-  <div class="flex justify-between items-center bg-card rounded-full mt-8 py-2 px-4">
-    <h2 class="text-xl text-primary">Itens da Lista</h2>
-    <button id="open-modal-btn" class="bg-[--secondary-color] text-white border-none rounded-full px-6 py-2 cursor-pointer transition duration-300 hover:bg-orange-400 ">
-      Adicionar Novo Item
-    </button>
+  <%# botao de adicionar item %>
+  <div class="flex flex-row sm:flex-row justify-between items-center bg-card rounded-full mt-8 py-2 px-4 align-middle">
+    <div class="flex items-center space-x-4 rounded-full focus-within:border-[--secondary-color] w-full sm:w-auto  sm:mb-0">
+      <input
+        type="text"
+        id="filter-input"
+        placeholder="Filtrar itens..."
+        class="p-2 border-transparent rounded-full focus:outline-none w-full sm:w-40 md:w-64"
+      />
+      <button id="search-button"></button>
+      <button id="clear-button"></button>
+    </div>
+    <div>
+      <button id="open-modal-btn" class="w-full sm:w-auto">
+        <p class="bg-[--secondary-color] text-white border-none rounded-full px-6 py-2 cursor-pointer transition duration-300 hover:bg-orange-400 hidden md:flex">Adicionar Novo Item</p>
+        <%= image_tag "add.png", alt: "Descrição da imagem", class: "w-8 md:hidden flex mx-0" %>
+      </button>
+    </div>
   </div>
-  <% if @list.items.any? %>
-    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-      <% @list.items.each do |item| %>
+
+  <% if @items.any? %>
+    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4" id="items">
+      <% @items.each do |item| %>
         <% next if item.id.nil? %> 
-        <li class="bg-[--card-background]  rounded-lg shadow-lg transition-transform transform hover:-translate-y-1">
-          <strong class="bg-primary uppercase text-white text-lg block mb-5 w-full p-4 rounded-t-xl"><%= item.name %></strong>
+        <li class="flex flex-col bg-card rounded-lg shadow-lg transition-transform transform hover:-translate-y-1" data-name="<%= item.name.downcase %>">
+          <h2 class="bg-primary uppercase text-white text-lg block mb-5 w-full p-4 rounded-t-xl"><%= item.name %></h2>
           <div class="p-4">
             <% if item.description.present? %>
               <p class="text-base"><%= item.description %></p>
@@ -63,19 +79,23 @@
             <% end %>
             <div id="buttons" class="flex flex-wrap mt-4 space-x-2">
               <div>
-                <%= link_to "Excluir", list_item_path(@list, item), method: :delete, data: { confirm: "Tem certeza?" }, class: "bg-red-500 text-white rounded-full px-4 py-2 cursor-pointer hover:bg-red-600" if item.id.present? %>
+                <%= link_to list_item_path(@list, item), method: :delete, data: { confirm: "Tem certeza?" } do %>
+                  <%= image_tag "delete.png", alt: "Excluir", class: "w-8" %>
+                <% end %>
               </div>
               <div> 
-                <%= link_to "Editar", edit_list_item_path(@list, item), class: "bg-yellow-500 text-white rounded-full px-4 py-2 cursor-pointer hover:bg-yellow-600" if item.id.present? %>
+                  <%= link_to edit_list_item_path(@list, item) do %>
+                    <%= image_tag "edit.png", alt: "Editar", class: "w-8" %>
+                  <% end %>
+                </div>
               </div>
             </div>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  <% else %>
-    <p class="mt-4">Sem itens na lista. Adicione o primeiro item usando o botão acima!</p>
-  <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="mt-4">Sem itens na lista. Adicione o primeiro item usando o botão acima!</p>
+    <% end %>
 
   <!-- Links -->
   <div class="flex space-x-4 mt-8 bg-card rounded-full py-2 px-4 w-fit">

@@ -10,7 +10,16 @@ class ListsController < ApplicationController
   end
 
   # GET /lists/1 or /lists/1.json
-  def show; end
+  def show
+    @list = List.find(params[:id])
+    @items = @list.items # Carrega os itens da lista
+
+    respond_to do |format|
+      format.html # Renderiza o show.html.erb
+      format.turbo_stream # Caso esteja usando filtros dinâmicos com Turbo Streams
+    end
+  end
+
 
   # GET /lists/new
   def new

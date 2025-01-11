@@ -1,31 +1,11 @@
 <style>
-
-
-  #new-list {
-    margin: 0 2rem;
-    padding: 2rem;
-    background-color: var(--card-background);
-    border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-
-  #new-list h1 {
-    color: var(--primary-color);
-    font-size: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  #new-list div {
-    margin-top: 20px;
-  }
-
   label {
     margin-top: 1rem;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
   }
 
-  input[type="text"]{
+  input[type="text"] {
     width: 95%;
     padding: 1rem;
     margin: 0.5rem 0;
@@ -34,28 +14,33 @@
     font-size: 1rem;
     margin-bottom: 1rem;
   }
-  
-  #new-list a {
-    margin: 2rem 0.5;
-    display: flex;
-    color: var(--primary-color);
-    text-decoration: none;
-  }
 
-  #new-list a:hover {
-    text-decoration: underline;
+  input[type="submit"] {
+    margin-top: 1rem;
+    background-color: #4a7d6f;
+    color: white;
+    border: none;
+    border-radius: 100rem;
+    padding: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: fit-content;
   }
 </style>
 
-
-<div id="new-list">
+<div class="m-8 p-8 bg-card rounded-lg shadow-lg">
   <% content_for :title, "New list" %>
 
-  <h1>Nova Lista</h1>
+  <h1 class="text-primary text-2xl mb-8 font-bold">Nova Lista</h1>
 
   <%= render "form", list: @list %>
 
-  <div>
-    <%= link_to "Voltar para as listas", lists_path %>
+  <div class="mt-5">
+    <%= link_to lists_path do %>
+      <div class="flex items-center">
+        <%= image_tag "back.png", alt: "Voltar", class: "w-5 h-auto color-primary" %>
+        <p class="color-primary">Voltar</p>
+      </div>
+    <% end %>
   </div>
 </div>
