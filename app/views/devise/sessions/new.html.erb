@@ -1,99 +1,30 @@
-<style>
-  #main {
-    color: var(--text-color);
-    width: 80%;
-    margin: 0 auto;
-    padding: 2rem;
-    background-color: var(--card-background);
-    border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .field {
-    margin: 10px 0;
-  }
-
-  label {
-    color: var(--text-color);
-  }
-
-  input[type="email"],
-  input[type="password"] {
-    width: 95%;
-    padding: 1rem ;
-    margin: 0.5rem 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    fonte-size: 1rem;
-  }
-
-  .actions {
-    text-align: center;
-  }
-
-  input[type="submit"] {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-
-  input[type="submit"]:hover {
-    background-color: #4a7d6f;
-  }
-
-  .actions a {
-    color: var(--primary-color);
-    text-decoration: none;
-  }
-
-  .actions a:hover {
-    text-decoration: underline;
-  }
-
-  a {
-    color: var(--primary-color);
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-</style>
-
-<div id="main">
-  <h2 style="fonte-size: 3rem;
-    color: var(--text-color);
-    text-align: center;">Log in</h2>
+<div class="w-4/5 mx-auto p-8 bg-white rounded-2xl shadow-md md:mt-32">
+  <h2 class="text-3xl text-primary text-center mb-6 font-bold">Entrar</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="mb-4">
+      <%= f.label :email, class: "block text-gray-700 mb-2" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", 
+          class: "w-full p-4 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-teal-500" %>
     </div>
 
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "current-password" %>
+    <div class="mb-4">
+      <%= f.label :password, class: "block text-gray-700 mb-2" %><br />
+      <%= f.password_field :password, autocomplete: "current-password",
+          class: "w-full p-4 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-teal-500" %>
     </div>
 
     <% if devise_mapping.rememberable? %>
-      <div class="field">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
+      <div class="mb-4">
+        <%= f.check_box :remember_me, class: "mr-2" %>
+        <%= f.label :remember_me, class: "text-gray-700" %>
       </div>
     <% end %>
 
-    <div class="actions">
-      <%= f.submit "Log in" %>
+    <div class="text-center">
+      <%= f.submit "Log in", 
+          class: "bg-teal-600 text-white px-6 py-3 rounded-lg cursor-pointer hover:bg-teal-700 transition-colors duration-300" %>
     </div>
   <% end %>
 
-  
-  <%= render "devise/shared/links" %>
-  
-  
 </div>

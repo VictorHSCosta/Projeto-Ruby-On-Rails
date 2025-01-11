@@ -1,73 +1,9 @@
-<style>
-  #main {
-    color: var(--text-color);
-    width: 80%;
-    margin: 0 auto;
-    padding: 2rem;
-    background-color: var(--card-background);
-    border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  label {
-    margin: 10px;
-  }
+<div id="main" class="text-gray-800 w-4/5 mx-auto p-8 bg-white rounded-xl shadow-md md:mt-20 mt-10 mb-10">
+  <h1 class="text-2xl text-primary mb-6">Editar Item da lista</h1>
 
-  input[type="text"],
-  input[type="date"] ,
-  textarea {
-    width: 95%;
-    padding: 1rem;
-    margin: 0.5rem 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-  }
-
-  input[type="checkbox"] {
-    margin: 10px;
-  }
-
-  input[type="submit"] {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  input[type="submit"]:hover {
-    background-color: #4a7d6f;
-  }
-
-  h1 {
-    font-size: 2rem;
-    color: #4a7d6f;
-    margin-bottom: 1.5rem;
-  }
-
-  a {
-    color: var(--primary-color);
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  div {
-    margin: 10px;
-  }
-}
-</style>
-
-<div id="main">
-  <h1>Editar Item da lista </h1>
-
-  <%= form_with(model: [@list, @item]) do |form| %>
+  <%= form_with(model: [@list, @item], local: true, class: "space-y-4") do |form| %>
     <% if @item.errors.any? %>
-      <div style="color: red">
+      <div class="text-red-500">
         <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
         <ul>
           <% @item.errors.full_messages.each do |message| %>
@@ -78,31 +14,36 @@
     <% end %>
 
     <div>
-      <%= form.label :nome %>
-      <%= form.text_field :name %>
+      <%= form.label :nome, class: "block mb-2" %>
+      <%= form.text_field :name, class: "w-full p-4 mb-2 rounded border border-gray-300 text-lg" %>
     </div>
 
     <div>
-      <%= form.label :Descrição %>
-      <%= form.text_area :description %>
+      <%= form.label :Descrição, class: "block mb-2" %>
+      <%= form.text_area :description, class: "w-full p-4 mb-2 rounded border border-gray-300 text-lg" %>
     </div>
 
     <div>
-      <%= form.label :Data %>
-      <%= form.date_select :due_date %>
+      <%= form.label :Data, class: "block mb-2" %>
+      <%= form.date_select :due_date, { order: [:day, :month, :year] }, class: "w-full p-4 mb-2 rounded border border-gray-300 text-lg" %>
+    </div>
+
+    <div class="flex items-center">
+      <%= form.label :completa, class: "block mb-2 mr-4" %>
+      <%= form.check_box :completed, class: "mt-[-0.5rem]" %>
     </div>
 
     <div>
-      <%= form.label :completa %>
-      <%= form.check_box :completed %>
-    </div>
-
-    <div>
-      <%= form.submit "Update Item" %>
+      <%= form.submit "Confirmar", class: "bg-primary text-white border-none rounded p-2 cursor-pointer hover:bg-green-800 transition duration-300 ease-in-out" %>
     </div>
   <% end %>
 
-  <div style="margin-top: 2rem; ">
-    <%= link_to "Voltar para itens da lista", list_path(@list) %>
+  <div class=" flex mt-8">
+    
+    <%= link_to list_path(@list), class: "text-primary hover:underline" do %>
+      <div class="flex items-center">
+        <%= image_tag "back.png", alt: "Meu Logo", class: "w-5 h-auto mr-2" %> Voltar
+      </div>
+    <% end %>
   </div>
 </div>
