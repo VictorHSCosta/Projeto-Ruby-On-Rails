@@ -1,6 +1,35 @@
 <section id="main" class="p-8 bg-[--background-color] text-[--text-color] font-sans leading-relaxed">
-  <h1 class="text-2xl text-[--primary-color] mb-4 font-bold text-center"><%= @list.name %></h1>
   
+  <div class="flex flex-row justify-between">
+    
+    <h1 class="text-2xl text-[--primary-color] mb-4 font-bold md:text-4xl"><%= @list.name %></h1>
+    
+    <!-- Itens do Menu -->
+    <div class="relative">
+      <button id="menu-toggle" class="text-white rounded-full relative z-20">
+        <%= image_tag "hamburger.png", alt: "Menu", class: "w-8 h-auto" %>
+      </button>
+
+      <div id="menu-content" class="hidden absolute top-full right-0 mt-2 bg-card rounded-lg shadow-lg py-2 px-4 space-y-4 z-50">
+        <%= link_to lists_path, class: "block rounded-full px-6 py-2 hover:bg-secondary transition duration-300" do %>
+          <%= image_tag "back.png", alt: "Voltar", class: "w-8 h-auto inline-block mr-2" %>
+          <span>Voltar</span>
+        <% end %>
+        
+        <%= link_to edit_list_path(@list), class: "block rounded-full px-6 py-2 hover:bg-primary transition duration-300" do %>
+          <%= image_tag "edit.png", alt: "Editar", class: "w-8 h-auto inline-block mr-2" %>
+          <span>Editar</span>
+        <% end %>
+        
+        <%= button_to list_path(@list), method: :delete, class: "w-full text-left rounded-full px-6 py-2 hover:bg-secondary transition duration-300",
+          form: { class: "inline" },
+          data: { turbo_confirm: "Tem certeza?" } do %>
+          <%= image_tag "delete.png", alt: "Excluir", class: "w-8 h-auto inline-block mr-2" %>
+          <span>Excluir</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
   <div id="item-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 overflow-y-auto h-full w-full z-50">
     <div class="relative top-20 mx-auto p-5 border w-full max-w-md sm:max-w-lg md:max-w-xl shadow-lg rounded-md bg-white">
@@ -77,15 +106,15 @@
             <% else %>
               <span class="text-red-500 block mt-4">❌ Não Feito</span>
             <% end %>
-            <div id="buttons" class="flex flex-wrap mt-4 space-x-2">
+            <div id="buttons" class="flex flex-wrap mt-4 space-x-2 bg-secondary p-2 m-[-1rem] rounded-b-lg">
               <div>
                 <%= link_to list_item_path(@list, item), method: :delete, data: { confirm: "Tem certeza?" } do %>
-                  <%= image_tag "delete.png", alt: "Excluir", class: "w-8" %>
+                  <%= image_tag "deletew.png", alt: "Excluir", class: "w-8" %>
                 <% end %>
               </div>
               <div> 
                   <%= link_to edit_list_item_path(@list, item) do %>
-                    <%= image_tag "edit.png", alt: "Editar", class: "w-8" %>
+                    <%= image_tag "editw.png", alt: "Editar", class: "w-8" %>
                   <% end %>
                 </div>
               </div>
@@ -97,18 +126,6 @@
       <p class="mt-4">Sem itens na lista. Adicione o primeiro item usando o botão acima!</p>
     <% end %>
 
-  <!-- Links -->
-  <div class="flex space-x-4 mt-8 bg-card rounded-full py-2 px-4 w-fit">
-    <%= link_to lists_path, class: " text-white rounded-full px-6 py-2 " do %>
-      <%= image_tag "back.png", alt: "Meu Logo", class: "w-8 h-auto" %>
-    <% end %>
-    <%= link_to edit_list_path(@list), class: "text-white rounded-full px-6 py-2 " do %>
-      <%= image_tag "edit.png", alt: "Meu Logo", class: "w-8 h-auto" %>
-    <% end %>
-    <%= button_to list_path(@list), method: :delete, class: " text-white rounded-full px-6 py-2 ",
-      form: { class: "inline" },
-      data: { turbo_confirm: "Tem certeza?" } do %>
-      <%= image_tag "delete.png", alt: "Meu Logo", class: "w-8 h-auto" %>
-    <% end %>
-  </div>
+ 
+
 </section>

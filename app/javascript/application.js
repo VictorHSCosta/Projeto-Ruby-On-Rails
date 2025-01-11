@@ -57,3 +57,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.getElementById("menu-toggle");
+  const menuContent = document.getElementById("menu-content");
+
+  menuToggle.addEventListener("click", function () {
+    menuContent.classList.toggle("hidden");
+  });
+
+  document.addEventListener("click", function (event) {
+    if (
+      !menuToggle.contains(event.target) &&
+      !menuContent.contains(event.target)
+    ) {
+      menuContent.classList.add("hidden");
+    }
+  });
+});
