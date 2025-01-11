@@ -37,9 +37,15 @@ Bem-vindo ao **To-Do List App**, um site simples e eficiente para gerenciar tare
 
 3. **Adicione itens à lista**:
    - Abra uma lista e clique em "Adicionar Novo Item".
-   - Preencha os campos (nome, descrição, data de entrega, etc.).
+       ![image](https://github.com/user-attachments/assets/961f359a-9ead-43f5-aef6-ae7cd1731399)
+   - Preencha com o nome da lista.
+       ![image](https://github.com/user-attachments/assets/69f87181-13a3-4522-b638-bdcfebd2374d)
+
 
 4. **Gerencie suas tarefas**:
+   - Abra na lista que voce acabou de criar.
+     ![image](https://github.com/user-attachments/assets/221f8404-8a98-45ae-884c-94f062d08538)
+
    - Use a barra de busca para encontrar itens específicos.
    - Exclua itens ou listas conforme necessário.
 
