@@ -25,6 +25,9 @@ Bem-vindo ao **To-Do List App**, um site simples e eficiente para gerenciar tare
 
 ## 📖 Como Usar
 
+![image](https://github.com/user-attachments/assets/8344609f-ed7f-41d3-995b-d5a85b626e99)
+
+
 1. **Faça login** ou crie uma conta.  
    ⚠️ **Nota:** Não há verificação de e-mail, então use qualquer endereço válido.
 
