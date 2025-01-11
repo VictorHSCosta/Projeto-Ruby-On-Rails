@@ -111,3 +111,11 @@ Siga os passos abaixo para configurar o projeto localmente:
    ```bash
    git clone https://github.com/seu-usuario/todo-list-app.git
    cd todo-list-app
+   rails db:create
+   rails db:migrate
+   ./bin/dev
+Agora o projeto está pronto para uso! 🎉
+
+
+
+
