@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "home/landing"
   devise_for :users
 
   resources :lists do
@@ -10,7 +11,12 @@ Rails.application.routes.draw do
   end
 
   # Define a rota raiz
-  root "lists#index"
+  # root "lists#index"
+
+
+  root to: "home#landing"
+
+
 
   # Rota de saúde para verificações de status
   get "up" => "rails/health#show", as: :rails_health_check
