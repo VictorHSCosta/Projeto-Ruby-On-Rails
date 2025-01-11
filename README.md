@@ -2,6 +2,8 @@
 
 Bem-vindo ao **To-Do List App**, um site simples e eficiente para gerenciar tarefas e listas. Este projeto foi desenvolvido com foco em funcionalidades básicas e produtividade.
 
+---
+
 ## 🚀 Funcionalidades Principais
 
 1. **Criar novas listas**: Organize suas tarefas em listas separadas.
@@ -25,41 +27,67 @@ Bem-vindo ao **To-Do List App**, um site simples e eficiente para gerenciar tare
 
 ## 📖 Como Usar
 
-![image](https://github.com/user-attachments/assets/8344609f-ed7f-41d3-995b-d5a85b626e99)
+### 1. Faça login ou crie uma conta
+⚠️ **Nota:** Não há verificação de e-mail, então use qualquer endereço válido.
 
+---
 
-1. **Faça login** ou crie uma conta.  
-   ⚠️ **Nota:** Não há verificação de e-mail, então use qualquer endereço válido.
+### 2. Crie uma nova lista
+- Após o login, clique no botão **"Nova Lista"**.
+- Insira o nome da lista e salve.
 
-2. **Crie uma nova lista**:
-   - Após o login, clique no botão "Nova Lista".
-   - Insira o nome da lista e salve.
+![Nova Lista](https://github.com/user-attachments/assets/8344609f-ed7f-41d3-995b-d5a85b626e99)
 
-3. **Adicione itens à lista**:
-   - Abra uma lista e clique em "Adicionar Novo Item".
-        ![image](https://github.com/user-attachments/assets/961f359a-9ead-43f5-aef6-ae7cd1731399)
-   - Preencha com o nome da lista.
-       ![image](https://github.com/user-attachments/assets/69f87181-13a3-4522-b638-bdcfebd2374d)
+---
 
+### 3. Adicione itens à lista
+- Abra uma lista e clique em **"Adicionar Novo Item"**.
 
-4. **Gerencie suas tarefas**:
-   - Abra na lista que voce acabou de criar.
-        ![image](https://github.com/user-attachments/assets/221f8404-8a98-45ae-884c-94f062d08538)
-   - Crie um novo item e preencha todos os campos.
-        ![image](https://github.com/user-attachments/assets/55038fde-9723-4957-9405-cbf54fdbbe1c)
-        ![image](https://github.com/user-attachments/assets/7cd66c64-ca59-4ba0-b690-725dd3c56dd8)
+![Adicionar Item](https://github.com/user-attachments/assets/961f359a-9ead-43f5-aef6-ae7cd1731399)
 
-   - Edite os itens da sua lista quando necessario
-        ![image](https://github.com/user-attachments/assets/76108198-8656-4afa-a630-8c937eccbc27)
+- Preencha com o nome do item.
 
-   - Use a barra de busca para encontrar itens específicos.
-        ![image](https://github.com/user-attachments/assets/cac98b53-b83e-438f-ac4c-dbf429f461ad)
-        ![image](https://github.com/user-attachments/assets/5c050411-bd31-4f1f-928a-b179dc43fc4a)
-        ![image](https://github.com/user-attachments/assets/7d8e878c-dd8b-462d-bbfe-a852567b6117)
+![Preencher Nome do Item](https://github.com/user-attachments/assets/69f87181-13a3-4522-b638-bdcfebd2374d)
 
-   - Exclua itens ou listas conforme necessário.
-        ![image](https://github.com/user-attachments/assets/fe4d45ef-c509-4784-af3c-176c8bfc3e2a)
-        ![image](https://github.com/user-attachments/assets/25d2069f-7dfb-4c90-a370-37ef219e8241)
+---
+
+### 4. Gerencie suas tarefas
+- Abra a lista que você acabou de criar.
+
+![Gerenciar Tarefas](https://github.com/user-attachments/assets/221f8404-8a98-45ae-884c-94f062d08538)
+
+- Crie um novo item e preencha todos os campos.
+
+![Preencher Campos do Item](https://github.com/user-attachments/assets/55038fde-9723-4957-9405-cbf54fdbbe1c)
+
+![Campos Preenchidos](https://github.com/user-attachments/assets/7cd66c64-ca59-4ba0-b690-725dd3c56dd8)
+
+---
+
+### 5. Edite os itens da lista
+- Modifique os itens sempre que necessário.
+
+![Editar Itens](https://github.com/user-attachments/assets/76108198-8656-4afa-a630-8c937eccbc27)
+
+---
+
+### 6. Use a barra de busca
+- Filtre itens específicos na lista.
+
+![Barra de Busca](https://github.com/user-attachments/assets/cac98b53-b83e-438f-ac4c-dbf429f461ad)
+
+![Busca em Ação](https://github.com/user-attachments/assets/5c050411-bd31-4f1f-928a-b179dc43fc4a)
+
+![Resultados da Busca](https://github.com/user-attachments/assets/7d8e878c-dd8b-462d-bbfe-a852567b6117)
+
+---
+
+### 7. Exclua itens ou listas
+- Remova itens ou listas conforme necessário.
+
+![Excluir Item](https://github.com/user-attachments/assets/fe4d45ef-c509-4784-af3c-176c8bfc3e2a)
+
+![Excluir Lista](https://github.com/user-attachments/assets/25d2069f-7dfb-4c90-a370-37ef219e8241)
 
 ---
 
@@ -83,7 +111,3 @@ Siga os passos abaixo para configurar o projeto localmente:
    ```bash
    git clone https://github.com/seu-usuario/todo-list-app.git
    cd todo-list-app
-   rails db:create                                                             ─╯
-   rails db:migrate
-   ./bin/dev 
-   
