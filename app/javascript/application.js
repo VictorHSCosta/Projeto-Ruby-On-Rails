@@ -26,3 +26,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.querySelector("#filter-input");
+  const searchButton = document.querySelector("#search-button");
+  const clearButton = document.querySelector("#clear-button");
+  const items = document.querySelectorAll("#items li");
+
+  const filterItems = () => {
+    const query = input.value.toLowerCase().trim();
+    items.forEach((item) => {
+      const name = item.querySelector("h2").textContent.toLowerCase().trim();
+      if (name.includes(query)) {
+        item.style.display = "flex";
+      } else {
+        item.style.display = "none";
+      }
+    });
+
+    console.log(items);
+  };
+
+  searchButton.addEventListener("click", filterItems);
+  input.addEventListener("input", filterItems);
+
+  clearButton.addEventListener("click", () => {
+    input.value = "";
+    items.forEach((item) => {
+      item.style.display = "flex";
+    });
+  });
+});
